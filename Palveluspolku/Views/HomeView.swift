@@ -13,7 +13,6 @@ struct HomeView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var profiles: [UserProfile]
     
-    // Get the profile (there should only be one)
     private var profile: UserProfile? {
         profiles.first
     }

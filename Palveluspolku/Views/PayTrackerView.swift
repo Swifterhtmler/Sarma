@@ -6,6 +6,7 @@
 //
 
 // Views/PayTrackerView.swift
+
 import SwiftUI
 import SwiftData
 
@@ -21,27 +22,34 @@ struct PayTrackerView: View {
         if let existing = paySettings.first {
             return existing
         } else {
-            let newSettings = PaySettings(
-                dailyRate: 6.10,
-                startDate: profiles.first?.serviceStartDate ?? Date(),
-                isWoman: false
-            )
+            let newSettings = PaySettings(isWoman: false)
             modelContext.insert(newSettings)
             return newSettings
         }
     }
     
-    private var daysServed: Int {
-        guard let startDate = profiles.first?.serviceStartDate else { return 0 }
-        return Calendar.current.dateComponents([.day], from: startDate, to: Date()).day ?? 0
+    private var serviceStartDate: Date? {
+        profiles.first?.serviceStartDate
     }
     
-    // Calculate total expenses
+    private var daysServed: Int {
+        guard let startDate = serviceStartDate else { return 0 }
+        let days = Calendar.current.dateComponents([.day], from: startDate, to: Date()).day ?? 0
+        return max(0, days)
+    }
+    
+    private var totalEarned: Double {
+        settings.totalEarned(serviceStartDate: serviceStartDate)
+    }
+    
+    private var currentDailyRate: Double {
+        settings.currentDailyRate(daysServed: daysServed)
+    }
+    
     private var totalExpenses: Double {
         budgetEntries.reduce(0) { $0 + $1.amount }
     }
     
-    // Calculate expenses this month
     private var thisMonthExpenses: Double {
         let calendar = Calendar.current
         let now = Date()
@@ -52,21 +60,19 @@ struct PayTrackerView: View {
             .reduce(0) { $0 + $1.amount }
     }
     
-    // Money left (total earned - total spent)
     private var moneyLeft: Double {
-        settings.totalEarned - totalExpenses
+        totalEarned - totalExpenses
     }
     
     var body: some View {
         List {
-            // Total earned section
             Section {
                 VStack(spacing: 20) {
                     Text("Kertynyt palkka")
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                     
-                    Text("€\(settings.totalEarned, specifier: "%.2f")")
+                    Text("€\(totalEarned, specifier: "%.2f")")
                         .font(.system(size: 48, weight: .bold))
                         .foregroundStyle(.green)
                     
@@ -74,7 +80,7 @@ struct PayTrackerView: View {
                         .font(.caption)
                         .foregroundStyle(.secondary)
                     
-                    Text("Nykyinen päiväraha: €\(settings.currentDailyRate, specifier: "%.2f")/pv")
+                    Text("Nykyinen päiväraha: €\(currentDailyRate, specifier: "%.2f")/pv")
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }
@@ -82,12 +88,11 @@ struct PayTrackerView: View {
                 .padding(.vertical)
             }
             
-            // Budget summary
             Section("Taloustilanne") {
                 HStack {
                     Text("Ansaittu yhteensä")
                     Spacer()
-                    Text("€\(settings.totalEarned, specifier: "%.2f")")
+                    Text("€\(totalEarned, specifier: "%.2f")")
                         .foregroundStyle(.green)
                 }
                 
@@ -110,7 +115,6 @@ struct PayTrackerView: View {
                 }
             }
             
-            // This month
             Section("Tämä kuukausi") {
                 HStack {
                     Text("Kuluvan kuun menot")
@@ -120,7 +124,6 @@ struct PayTrackerView: View {
                 }
             }
             
-            // Recent expenses
             Section {
                 if budgetEntries.isEmpty {
                     ContentUnavailableView(
@@ -162,24 +165,22 @@ struct PayTrackerView: View {
                 }
             }
             
-            // Next payment
             Section("Seuraava palkanmaksu") {
                 HStack {
                     Text("Arvioitu päivä")
                     Spacer()
-                    Text(settings.nextPaymentDate.formatted(date: .abbreviated, time: .omitted))
+                    Text(settings.nextPaymentDate().formatted(date: .abbreviated, time: .omitted))
                         .foregroundStyle(.secondary)
                 }
                 
                 HStack {
                     Text("Arvioitu summa")
                     Spacer()
-                    Text("€\(settings.nextPaymentAmount, specifier: "%.2f")")
+                    Text("€\(settings.nextPaymentAmount(currentRate: currentDailyRate), specifier: "%.2f")")
                         .foregroundStyle(.blue)
                 }
             }
             
-            // Info section
             Section("Päivärahaporrastus") {
                 VStack(alignment: .leading, spacing: 8) {
                     Text("• 1-165 pv: €6,10/pv")
@@ -222,7 +223,6 @@ struct PayTrackerView: View {
     }
 }
 
-// Add Budget Entry View
 struct AddBudgetEntryView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
@@ -272,7 +272,6 @@ struct AddBudgetEntryView: View {
     }
     
     private func saveBudgetEntry() {
-        // Handle both comma and period as decimal separator
         let cleanAmount = amount.replacingOccurrences(of: ",", with: ".")
         guard let amountValue = Double(cleanAmount) else { return }
         
@@ -288,7 +287,6 @@ struct AddBudgetEntryView: View {
     }
 }
 
-// Settings view (keep as is)
 struct PaySettingsView: View {
     @Environment(\.dismiss) private var dismiss
     let settings: PaySettings

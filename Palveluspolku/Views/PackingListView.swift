@@ -97,7 +97,7 @@ struct PackingListView: View {
                 }
             }
             
-            // Tips
+            // Tips section with tips
             Section("Vinkkejä") {
                 Text("• Saavu jo puolenpäivän aikoihin - ehdit sovittaa varusteet rauhassa")
                     .font(.caption)

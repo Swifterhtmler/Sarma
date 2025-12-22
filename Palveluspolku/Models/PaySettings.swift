@@ -12,17 +12,12 @@ import Foundation
 
 @Model
 final class PaySettings {
-    var dailyRate: Double  // This is now ignored - we calculate based on days
-    var startDate: Date
-    var isWoman: Bool      // For the 1.50€ varusraha
+    var isWoman: Bool
     
-    init(dailyRate: Double = 6.10, startDate: Date = Date(), isWoman: Bool = false) {
-        self.dailyRate = dailyRate
-        self.startDate = startDate
+    init(isWoman: Bool = false) {
         self.isWoman = isWoman
     }
-    
-    // Calculate correct daily rate based on days served
+
     func getDailyRate(for daysServed: Int) -> Double {
         let baseRate: Double
         
@@ -34,14 +29,14 @@ final class PaySettings {
             baseRate = 14.15
         }
         
-        // Add varusraha for women
         let varusraha = isWoman ? 1.50 : 0.0
-        
         return baseRate + varusraha
     }
     
-    // Computed: Total earned so far
-    var totalEarned: Double {
+    // Calculate total earned (pass in start date from UserProfile)
+    func totalEarned(serviceStartDate: Date?) -> Double {
+        guard let startDate = serviceStartDate else { return 0.0 }
+        
         let daysServed = Calendar.current.dateComponents([.day], from: startDate, to: Date()).day ?? 0
         
         if daysServed <= 0 {
@@ -50,47 +45,40 @@ final class PaySettings {
         
         var total = 0.0
         
-        // Calculate tier by tier
         if daysServed <= 165 {
-            // All days at tier 1
             total = Double(daysServed) * getDailyRate(for: 1)
         } else if daysServed <= 255 {
-            // First 165 days at tier 1, rest at tier 2
             total = Double(165) * getDailyRate(for: 165)
             total += Double(daysServed - 165) * getDailyRate(for: 166)
         } else {
-            // First 165 at tier 1, next 90 at tier 2, rest at tier 3
             total = Double(165) * getDailyRate(for: 165)
-            total += Double(90) * getDailyRate(for: 166)  // 166-255 = 90 days
+            total += Double(90) * getDailyRate(for: 166)
             total += Double(daysServed - 255) * getDailyRate(for: 256)
         }
         
         return total
     }
     
-    // Current daily rate (what they're earning today)
-    var currentDailyRate: Double {
-        let daysServed = Calendar.current.dateComponents([.day], from: startDate, to: Date()).day ?? 0
-        return getDailyRate(for: daysServed)
+    // Current daily rate (pass in days served)
+    func currentDailyRate(daysServed: Int) -> Double {
+        return getDailyRate(for: max(0, daysServed))
     }
     
-    // Computed: Expected next payment (twice per month on Fridays)
-    var nextPaymentDate: Date {
+    // Next payment date (independent of service dates)
+    func nextPaymentDate() -> Date {
         let today = Date()
         let calendar = Calendar.current
         
-        // Find next Friday
         var nextFriday = today
-        while calendar.component(.weekday, from: nextFriday) != 6 { // 6 = Friday
+        while calendar.component(.weekday, from: nextFriday) != 6 {
             nextFriday = calendar.date(byAdding: .day, value: 1, to: nextFriday)!
         }
         
         return nextFriday
     }
     
-    // Computed: Days since last payment (estimate - twice per month)
-    var daysSinceLastPayment: Int {
-        // Rough estimate: payments every ~15 days
+    // Days since last payment
+    func daysSinceLastPayment() -> Int {
         let today = Date()
         let calendar = Calendar.current
         let currentDay = calendar.component(.day, from: today)
@@ -102,8 +90,8 @@ final class PaySettings {
         }
     }
     
-    // Computed: Expected next payment amount
-    var nextPaymentAmount: Double {
-        return Double(daysSinceLastPayment) * currentDailyRate
+    // Next payment amount (pass in current daily rate)
+    func nextPaymentAmount(currentRate: Double) -> Double {
+        return Double(daysSinceLastPayment()) * currentRate
     }
 }

@@ -8,7 +8,7 @@
 import SwiftData
 import Foundation
 
-@Model  // ← THIS is required!
+@Model 
 final class CooperTest {
     var date: Date
     var distance: Int

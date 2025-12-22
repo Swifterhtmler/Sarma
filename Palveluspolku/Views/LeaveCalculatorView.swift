@@ -188,7 +188,7 @@ struct AddLeaveView: View {
     
     var numberOfDays: Int {
         let days = Calendar.current.dateComponents([.day], from: startDate, to: endDate).day ?? 0
-        return days + 1  // Include both start and end date
+        return days + 1 // end and start dates included
     }
     
     var body: some View {
