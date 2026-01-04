@@ -6,11 +6,51 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		2484FDCA2F0B17EA0010C41A /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2484FDC92F0B17EA0010C41A /* WidgetKit.framework */; };
+		2484FDCC2F0B17EA0010C41A /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2484FDCB2F0B17EA0010C41A /* SwiftUI.framework */; };
+		2484FDD92F0B17EB0010C41A /* TJExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2484FDC72F0B17EA0010C41A /* TJExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2484FDD72F0B17EB0010C41A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 24E83F692EF344F50028CAC5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2484FDC62F0B17EA0010C41A;
+			remoteInfo = TJExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2484FDDE2F0B17EB0010C41A /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				2484FDD92F0B17EB0010C41A /* TJExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		2484FDC72F0B17EA0010C41A /* TJExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TJExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		2484FDC92F0B17EA0010C41A /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		2484FDCB2F0B17EA0010C41A /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		24E83F712EF344F50028CAC5 /* Palveluspolku.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Palveluspolku.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		2484FDDD2F0B17EB0010C41A /* Exceptions for "TJ" folder in "TJExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 2484FDC62F0B17EA0010C41A /* TJExtension */;
+		};
 		24CCEBC22EFABFFC0051E9CB /* Exceptions for "Palveluspolku" folder in "Palveluspolku" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -21,6 +61,14 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		2484FDCD2F0B17EA0010C41A /* TJ */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				2484FDDD2F0B17EB0010C41A /* Exceptions for "TJ" folder in "TJExtension" target */,
+			);
+			path = TJ;
+			sourceTree = "<group>";
+		};
 		24E83F732EF344F50028CAC5 /* Palveluspolku */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -32,6 +80,15 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		2484FDC42F0B17EA0010C41A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2484FDCC2F0B17EA0010C41A /* SwiftUI.framework in Frameworks */,
+				2484FDCA2F0B17EA0010C41A /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		24E83F6E2EF344F50028CAC5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -42,10 +99,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2484FDC82F0B17EA0010C41A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2484FDC92F0B17EA0010C41A /* WidgetKit.framework */,
+				2484FDCB2F0B17EA0010C41A /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		24E83F682EF344F50028CAC5 = {
 			isa = PBXGroup;
 			children = (
 				24E83F732EF344F50028CAC5 /* Palveluspolku */,
+				2484FDCD2F0B17EA0010C41A /* TJ */,
+				2484FDC82F0B17EA0010C41A /* Frameworks */,
 				24E83F722EF344F50028CAC5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				24E83F712EF344F50028CAC5 /* Palveluspolku.app */,
+				2484FDC72F0B17EA0010C41A /* TJExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -61,6 +130,28 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		2484FDC62F0B17EA0010C41A /* TJExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2484FDDA2F0B17EB0010C41A /* Build configuration list for PBXNativeTarget "TJExtension" */;
+			buildPhases = (
+				2484FDC32F0B17EA0010C41A /* Sources */,
+				2484FDC42F0B17EA0010C41A /* Frameworks */,
+				2484FDC52F0B17EA0010C41A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				2484FDCD2F0B17EA0010C41A /* TJ */,
+			);
+			name = TJExtension;
+			packageProductDependencies = (
+			);
+			productName = TJExtension;
+			productReference = 2484FDC72F0B17EA0010C41A /* TJExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		24E83F702EF344F50028CAC5 /* Palveluspolku */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 24E83F7E2EF344F60028CAC5 /* Build configuration list for PBXNativeTarget "Palveluspolku" */;
@@ -68,10 +159,12 @@
 				24E83F6D2EF344F50028CAC5 /* Sources */,
 				24E83F6E2EF344F50028CAC5 /* Frameworks */,
 				24E83F6F2EF344F50028CAC5 /* Resources */,
+				2484FDDE2F0B17EB0010C41A /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				2484FDD82F0B17EB0010C41A /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				24E83F732EF344F50028CAC5 /* Palveluspolku */,
@@ -93,6 +186,9 @@
 				LastSwiftUpdateCheck = 2620;
 				LastUpgradeCheck = 2620;
 				TargetAttributes = {
+					2484FDC62F0B17EA0010C41A = {
+						CreatedOnToolsVersion = 26.2;
+					};
 					24E83F702EF344F50028CAC5 = {
 						CreatedOnToolsVersion = 26.2;
 					};
@@ -113,11 +209,19 @@
 			projectRoot = "";
 			targets = (
 				24E83F702EF344F50028CAC5 /* Palveluspolku */,
+				2484FDC62F0B17EA0010C41A /* TJExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		2484FDC52F0B17EA0010C41A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		24E83F6F2EF344F50028CAC5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -128,6 +232,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		2484FDC32F0B17EA0010C41A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		24E83F6D2EF344F50028CAC5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -137,7 +248,75 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		2484FDD82F0B17EB0010C41A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2484FDC62F0B17EA0010C41A /* TJExtension */;
+			targetProxy = 2484FDD72F0B17EB0010C41A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		2484FDDB2F0B17EB0010C41A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZC82Y59CXU;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TJ/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TJ;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Palveluspolku.Palveluspolku.TJ;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2484FDDC2F0B17EB0010C41A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZC82Y59CXU;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TJ/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TJ;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Palveluspolku.Palveluspolku.TJ;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		24E83F7C2EF344F60028CAC5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -334,6 +513,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2484FDDA2F0B17EB0010C41A /* Build configuration list for PBXNativeTarget "TJExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2484FDDB2F0B17EB0010C41A /* Debug */,
+				2484FDDC2F0B17EB0010C41A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		24E83F6C2EF344F50028CAC5 /* Build configuration list for PBXProject "Palveluspolku" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
