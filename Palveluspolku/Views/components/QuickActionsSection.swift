@@ -96,7 +96,7 @@ struct QuickActionsSection: View {
                         title: "Varusteet",
                         subtitle: "Kirjaa varusteet",
                         color: .purple,
-                        destination: AnyView(Text("Tulossa Pian"))
+                        destination: AnyView(EquipmentView())
                     )
                 } else {
                     // Post-service actions
