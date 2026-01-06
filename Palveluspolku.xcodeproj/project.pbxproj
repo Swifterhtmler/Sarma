@@ -7,18 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2484FDCA2F0B17EA0010C41A /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2484FDC92F0B17EA0010C41A /* WidgetKit.framework */; };
-		2484FDCC2F0B17EA0010C41A /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2484FDCB2F0B17EA0010C41A /* SwiftUI.framework */; };
-		2484FDD92F0B17EB0010C41A /* TJExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2484FDC72F0B17EA0010C41A /* TJExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		24EE11AB2F0D88FD0003DEC4 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2484FDC92F0B17EA0010C41A /* WidgetKit.framework */; };
+		24EE11AC2F0D88FD0003DEC4 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2484FDCB2F0B17EA0010C41A /* SwiftUI.framework */; };
+		24EE11B72F0D88FE0003DEC4 /* ServiceCountdownWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 24EE11AA2F0D88FD0003DEC4 /* ServiceCountdownWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		24EE11C62F0DAC310003DEC4 /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = 24EE11C52F0DAC310003DEC4 /* RevenueCat */; };
+		24EE11C82F0DAC310003DEC4 /* RevenueCatUI in Frameworks */ = {isa = PBXBuildFile; productRef = 24EE11C72F0DAC310003DEC4 /* RevenueCatUI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		2484FDD72F0B17EB0010C41A /* PBXContainerItemProxy */ = {
+		24EE11B52F0D88FE0003DEC4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 24E83F692EF344F50028CAC5 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 2484FDC62F0B17EA0010C41A;
-			remoteInfo = TJExtension;
+			remoteGlobalIDString = 24EE11A92F0D88FD0003DEC4;
+			remoteInfo = ServiceCountdownWidgetExtension;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -29,7 +31,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				2484FDD92F0B17EB0010C41A /* TJExtension.appex in Embed Foundation Extensions */,
+				24EE11B72F0D88FE0003DEC4 /* ServiceCountdownWidgetExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -37,20 +39,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2484FDC72F0B17EA0010C41A /* TJExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TJExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		2484FDC92F0B17EA0010C41A /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		2484FDCB2F0B17EA0010C41A /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		24E83F712EF344F50028CAC5 /* Palveluspolku.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Palveluspolku.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		24EE11AA2F0D88FD0003DEC4 /* ServiceCountdownWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ServiceCountdownWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		24EE11BC2F0D89180003DEC4 /* ServiceCountdownWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ServiceCountdownWidgetExtension.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		2484FDDD2F0B17EB0010C41A /* Exceptions for "TJ" folder in "TJExtension" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = 2484FDC62F0B17EA0010C41A /* TJExtension */;
-		};
 		24CCEBC22EFABFFC0051E9CB /* Exceptions for "Palveluspolku" folder in "Palveluspolku" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -58,41 +54,58 @@
 			);
 			target = 24E83F702EF344F50028CAC5 /* Palveluspolku */;
 		};
+		24EE11BB2F0D88FE0003DEC4 /* Exceptions for "ServiceCountdownWidget" folder in "ServiceCountdownWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 24EE11A92F0D88FD0003DEC4 /* ServiceCountdownWidgetExtension */;
+		};
+		24EE11C12F0D89C70003DEC4 /* Exceptions for "Palveluspolku" folder in "ServiceCountdownWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Shared/SharedDataManager.swift,
+			);
+			target = 24EE11A92F0D88FD0003DEC4 /* ServiceCountdownWidgetExtension */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		2484FDCD2F0B17EA0010C41A /* TJ */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				2484FDDD2F0B17EB0010C41A /* Exceptions for "TJ" folder in "TJExtension" target */,
-			);
-			path = TJ;
-			sourceTree = "<group>";
-		};
 		24E83F732EF344F50028CAC5 /* Palveluspolku */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				24CCEBC22EFABFFC0051E9CB /* Exceptions for "Palveluspolku" folder in "Palveluspolku" target */,
+				24EE11C12F0D89C70003DEC4 /* Exceptions for "Palveluspolku" folder in "ServiceCountdownWidgetExtension" target */,
 			);
 			path = Palveluspolku;
+			sourceTree = "<group>";
+		};
+		24EE11AD2F0D88FD0003DEC4 /* ServiceCountdownWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				24EE11BB2F0D88FE0003DEC4 /* Exceptions for "ServiceCountdownWidget" folder in "ServiceCountdownWidgetExtension" target */,
+			);
+			path = ServiceCountdownWidget;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		2484FDC42F0B17EA0010C41A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2484FDCC2F0B17EA0010C41A /* SwiftUI.framework in Frameworks */,
-				2484FDCA2F0B17EA0010C41A /* WidgetKit.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		24E83F6E2EF344F50028CAC5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24EE11C82F0DAC310003DEC4 /* RevenueCatUI in Frameworks */,
+				24EE11C62F0DAC310003DEC4 /* RevenueCat in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		24EE11A72F0D88FD0003DEC4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				24EE11AC2F0D88FD0003DEC4 /* SwiftUI.framework in Frameworks */,
+				24EE11AB2F0D88FD0003DEC4 /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,8 +124,9 @@
 		24E83F682EF344F50028CAC5 = {
 			isa = PBXGroup;
 			children = (
+				24EE11BC2F0D89180003DEC4 /* ServiceCountdownWidgetExtension.entitlements */,
 				24E83F732EF344F50028CAC5 /* Palveluspolku */,
-				2484FDCD2F0B17EA0010C41A /* TJ */,
+				24EE11AD2F0D88FD0003DEC4 /* ServiceCountdownWidget */,
 				2484FDC82F0B17EA0010C41A /* Frameworks */,
 				24E83F722EF344F50028CAC5 /* Products */,
 			);
@@ -122,7 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				24E83F712EF344F50028CAC5 /* Palveluspolku.app */,
-				2484FDC72F0B17EA0010C41A /* TJExtension.appex */,
+				24EE11AA2F0D88FD0003DEC4 /* ServiceCountdownWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -130,28 +144,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2484FDC62F0B17EA0010C41A /* TJExtension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 2484FDDA2F0B17EB0010C41A /* Build configuration list for PBXNativeTarget "TJExtension" */;
-			buildPhases = (
-				2484FDC32F0B17EA0010C41A /* Sources */,
-				2484FDC42F0B17EA0010C41A /* Frameworks */,
-				2484FDC52F0B17EA0010C41A /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				2484FDCD2F0B17EA0010C41A /* TJ */,
-			);
-			name = TJExtension;
-			packageProductDependencies = (
-			);
-			productName = TJExtension;
-			productReference = 2484FDC72F0B17EA0010C41A /* TJExtension.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
 		24E83F702EF344F50028CAC5 /* Palveluspolku */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 24E83F7E2EF344F60028CAC5 /* Build configuration list for PBXNativeTarget "Palveluspolku" */;
@@ -164,17 +156,41 @@
 			buildRules = (
 			);
 			dependencies = (
-				2484FDD82F0B17EB0010C41A /* PBXTargetDependency */,
+				24EE11B62F0D88FE0003DEC4 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				24E83F732EF344F50028CAC5 /* Palveluspolku */,
 			);
 			name = Palveluspolku;
 			packageProductDependencies = (
+				24EE11C52F0DAC310003DEC4 /* RevenueCat */,
+				24EE11C72F0DAC310003DEC4 /* RevenueCatUI */,
 			);
 			productName = Palveluspolku;
 			productReference = 24E83F712EF344F50028CAC5 /* Palveluspolku.app */;
 			productType = "com.apple.product-type.application";
+		};
+		24EE11A92F0D88FD0003DEC4 /* ServiceCountdownWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 24EE11B82F0D88FE0003DEC4 /* Build configuration list for PBXNativeTarget "ServiceCountdownWidgetExtension" */;
+			buildPhases = (
+				24EE11A62F0D88FD0003DEC4 /* Sources */,
+				24EE11A72F0D88FD0003DEC4 /* Frameworks */,
+				24EE11A82F0D88FD0003DEC4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				24EE11AD2F0D88FD0003DEC4 /* ServiceCountdownWidget */,
+			);
+			name = ServiceCountdownWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = ServiceCountdownWidgetExtension;
+			productReference = 24EE11AA2F0D88FD0003DEC4 /* ServiceCountdownWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -186,10 +202,10 @@
 				LastSwiftUpdateCheck = 2620;
 				LastUpgradeCheck = 2620;
 				TargetAttributes = {
-					2484FDC62F0B17EA0010C41A = {
+					24E83F702EF344F50028CAC5 = {
 						CreatedOnToolsVersion = 26.2;
 					};
-					24E83F702EF344F50028CAC5 = {
+					24EE11A92F0D88FD0003DEC4 = {
 						CreatedOnToolsVersion = 26.2;
 					};
 				};
@@ -203,26 +219,29 @@
 			);
 			mainGroup = 24E83F682EF344F50028CAC5;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				24EE11C42F0DAC310003DEC4 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 24E83F722EF344F50028CAC5 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				24E83F702EF344F50028CAC5 /* Palveluspolku */,
-				2484FDC62F0B17EA0010C41A /* TJExtension */,
+				24EE11A92F0D88FD0003DEC4 /* ServiceCountdownWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		2484FDC52F0B17EA0010C41A /* Resources */ = {
+		24E83F6F2EF344F50028CAC5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		24E83F6F2EF344F50028CAC5 /* Resources */ = {
+		24EE11A82F0D88FD0003DEC4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -232,14 +251,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		2484FDC32F0B17EA0010C41A /* Sources */ = {
+		24E83F6D2EF344F50028CAC5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		24E83F6D2EF344F50028CAC5 /* Sources */ = {
+		24EE11A62F0D88FD0003DEC4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -249,74 +268,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		2484FDD82F0B17EB0010C41A /* PBXTargetDependency */ = {
+		24EE11B62F0D88FE0003DEC4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2484FDC62F0B17EA0010C41A /* TJExtension */;
-			targetProxy = 2484FDD72F0B17EB0010C41A /* PBXContainerItemProxy */;
+			target = 24EE11A92F0D88FD0003DEC4 /* ServiceCountdownWidgetExtension */;
+			targetProxy = 24EE11B52F0D88FE0003DEC4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		2484FDDB2F0B17EB0010C41A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ZC82Y59CXU;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = TJ/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = TJ;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Palveluspolku.Palveluspolku.TJ;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		2484FDDC2F0B17EB0010C41A /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ZC82Y59CXU;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = TJ/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = TJ;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Palveluspolku.Palveluspolku.TJ;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 		24E83F7C2EF344F60028CAC5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -443,6 +402,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Palveluspolku/Palveluspolku.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = ZC82Y59CXU;
@@ -479,6 +439,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Palveluspolku/Palveluspolku.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = ZC82Y59CXU;
@@ -510,18 +471,71 @@
 			};
 			name = Release;
 		};
+		24EE11B92F0D88FE0003DEC4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = ServiceCountdownWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 5;
+				DEVELOPMENT_TEAM = ZC82Y59CXU;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ServiceCountdownWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ServiceCountdownWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.4;
+				PRODUCT_BUNDLE_IDENTIFIER = Palveluspolku.Palveluspolku.ServiceCountdownWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		24EE11BA2F0D88FE0003DEC4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = ServiceCountdownWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 5;
+				DEVELOPMENT_TEAM = ZC82Y59CXU;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ServiceCountdownWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ServiceCountdownWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.4;
+				PRODUCT_BUNDLE_IDENTIFIER = Palveluspolku.Palveluspolku.ServiceCountdownWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2484FDDA2F0B17EB0010C41A /* Build configuration list for PBXNativeTarget "TJExtension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				2484FDDB2F0B17EB0010C41A /* Debug */,
-				2484FDDC2F0B17EB0010C41A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		24E83F6C2EF344F50028CAC5 /* Build configuration list for PBXProject "Palveluspolku" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -540,7 +554,40 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		24EE11B82F0D88FE0003DEC4 /* Build configuration list for PBXNativeTarget "ServiceCountdownWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				24EE11B92F0D88FE0003DEC4 /* Debug */,
+				24EE11BA2F0D88FE0003DEC4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		24EE11C42F0DAC310003DEC4 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RevenueCat/purchases-ios-spm.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.52.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		24EE11C52F0DAC310003DEC4 /* RevenueCat */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 24EE11C42F0DAC310003DEC4 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */;
+			productName = RevenueCat;
+		};
+		24EE11C72F0DAC310003DEC4 /* RevenueCatUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 24EE11C42F0DAC310003DEC4 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */;
+			productName = RevenueCatUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 24E83F692EF344F50028CAC5 /* Project object */;
 }

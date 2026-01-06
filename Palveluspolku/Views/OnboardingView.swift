@@ -8,6 +8,7 @@
 // Views/OnboardingView.swift
 import SwiftUI
 import SwiftData
+import WidgetKit
 
 struct OnboardingView: View {
     @Environment(\.modelContext) private var modelContext
@@ -154,6 +155,13 @@ struct OnboardingView: View {
         }
         
         try? modelContext.save()
+        
+        // Update widget with new data
+        SharedDataManager.shared.saveServiceData(
+            endDate: serviceEndDate,
+            garrison: garrison.isEmpty ? nil : garrison
+        )
+        WidgetCenter.shared.reloadAllTimelines()
         
         // Mark onboarding as complete
         hasCompletedOnboarding = true

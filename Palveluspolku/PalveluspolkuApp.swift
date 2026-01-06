@@ -11,7 +11,7 @@ import SwiftData
 @main
 struct PalveluspolkuApp: App {
     @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding = false
-    
+    @State private var showPaywall = false
 
     
     var body: some Scene {
@@ -28,6 +28,18 @@ struct PalveluspolkuApp: App {
                         PreparationItem.self,
                         EquipmentItem.self
                     ])
+                    .onOpenURL { url in
+                                            // Handle widget tap - only show paywall if not premium
+                                            if url.absoluteString == "palveluspolku://premium" {
+                                                if !SharedDataManager.shared.isPremium() {
+                                                    showPaywall = true
+                                                }
+                                                // If already premium, do nothing (widget works normally)
+                                            }
+                                        }
+                                        .sheet(isPresented: $showPaywall) {
+                                            PaywallView()
+                                        }
                 
             } else {
                 OnboardingView(hasCompletedOnboarding: $hasCompletedOnboarding)

@@ -4,10 +4,10 @@
 //
 //  Created by Riku Kuisma on 18.12.2025.
 //
-
 // Views/SettingsView.swift
 import SwiftUI
 import SwiftData
+import WidgetKit
 
 struct SettingsView: View {
     @Environment(\.modelContext) private var modelContext
@@ -17,6 +17,7 @@ struct SettingsView: View {
     @State private var serviceStartDate = Date()
     @State private var serviceEndDate = Date()
     @State private var garrison = ""
+    @State private var isPremium = SharedDataManager.shared.isPremium()
     
     private var profile: UserProfile? {
         profiles.first
@@ -31,6 +32,14 @@ struct SettingsView: View {
             
             Section("Varuskunta") {
                 TextField("Varuskunta (valinnainen)", text: $garrison)
+            }
+            
+            Section("Debug (Poista ennen julkaisua)") {
+                Toggle("Premium Status", isOn: $isPremium)
+                    .onChange(of: isPremium) { _, newValue in
+                        SharedDataManager.shared.setIsPremium(newValue)
+                        WidgetCenter.shared.reloadAllTimelines()
+                    }
             }
             
             Section {
@@ -53,6 +62,8 @@ struct SettingsView: View {
                 // Set defaults for new profile
                 serviceEndDate = Calendar.current.date(byAdding: .month, value: 6, to: Date()) ?? Date()
             }
+            // Load current premium status
+            isPremium = SharedDataManager.shared.isPremium()
         }
     }
     
@@ -73,6 +84,13 @@ struct SettingsView: View {
         }
         
         try? modelContext.save()
+        
+        // Update widget with new data
+        SharedDataManager.shared.saveServiceData(
+            endDate: serviceEndDate,
+            garrison: garrison.isEmpty ? nil : garrison
+        )
+        WidgetCenter.shared.reloadAllTimelines()
     }
 }
 
