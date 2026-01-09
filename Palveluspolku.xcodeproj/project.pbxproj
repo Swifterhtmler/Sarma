@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		24BD6F8B2F0F2B7B0047E3BB /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = 24BD6F8A2F0F2B7B0047E3BB /* RevenueCat */; };
+		24BD6F8D2F0F2B7B0047E3BB /* RevenueCatUI in Frameworks */ = {isa = PBXBuildFile; productRef = 24BD6F8C2F0F2B7B0047E3BB /* RevenueCatUI */; };
 		24EE11AB2F0D88FD0003DEC4 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2484FDC92F0B17EA0010C41A /* WidgetKit.framework */; };
 		24EE11AC2F0D88FD0003DEC4 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2484FDCB2F0B17EA0010C41A /* SwiftUI.framework */; };
 		24EE11B72F0D88FE0003DEC4 /* ServiceCountdownWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 24EE11AA2F0D88FD0003DEC4 /* ServiceCountdownWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		24EE11C62F0DAC310003DEC4 /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = 24EE11C52F0DAC310003DEC4 /* RevenueCat */; };
-		24EE11C82F0DAC310003DEC4 /* RevenueCatUI in Frameworks */ = {isa = PBXBuildFile; productRef = 24EE11C72F0DAC310003DEC4 /* RevenueCatUI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,8 +95,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24EE11C82F0DAC310003DEC4 /* RevenueCatUI in Frameworks */,
-				24EE11C62F0DAC310003DEC4 /* RevenueCat in Frameworks */,
+				24BD6F8D2F0F2B7B0047E3BB /* RevenueCatUI in Frameworks */,
+				24BD6F8B2F0F2B7B0047E3BB /* RevenueCat in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,8 +163,8 @@
 			);
 			name = Palveluspolku;
 			packageProductDependencies = (
-				24EE11C52F0DAC310003DEC4 /* RevenueCat */,
-				24EE11C72F0DAC310003DEC4 /* RevenueCatUI */,
+				24BD6F8A2F0F2B7B0047E3BB /* RevenueCat */,
+				24BD6F8C2F0F2B7B0047E3BB /* RevenueCatUI */,
 			);
 			productName = Palveluspolku;
 			productReference = 24E83F712EF344F50028CAC5 /* Palveluspolku.app */;
@@ -220,7 +220,7 @@
 			mainGroup = 24E83F682EF344F50028CAC5;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				24EE11C42F0DAC310003DEC4 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */,
+				24BD6F892F0F2B7A0047E3BB /* XCRemoteSwiftPackageReference "purchases-ios-spm" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 24E83F722EF344F50028CAC5 /* Products */;
@@ -404,7 +404,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Palveluspolku/Palveluspolku.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = ZC82Y59CXU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -421,7 +421,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = Palveluspolku.Palveluspolku;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -441,7 +441,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Palveluspolku/Palveluspolku.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = ZC82Y59CXU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -458,7 +458,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = Palveluspolku.Palveluspolku;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -478,18 +478,19 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = ServiceCountdownWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = ZC82Y59CXU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ServiceCountdownWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ServiceCountdownWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = Palveluspolku.Palveluspolku.ServiceCountdownWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -509,18 +510,19 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = ServiceCountdownWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = ZC82Y59CXU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ServiceCountdownWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ServiceCountdownWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = Palveluspolku.Palveluspolku.ServiceCountdownWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -566,7 +568,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		24EE11C42F0DAC310003DEC4 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */ = {
+		24BD6F892F0F2B7A0047E3BB /* XCRemoteSwiftPackageReference "purchases-ios-spm" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/RevenueCat/purchases-ios-spm.git";
 			requirement = {
@@ -577,14 +579,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		24EE11C52F0DAC310003DEC4 /* RevenueCat */ = {
+		24BD6F8A2F0F2B7B0047E3BB /* RevenueCat */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 24EE11C42F0DAC310003DEC4 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */;
+			package = 24BD6F892F0F2B7A0047E3BB /* XCRemoteSwiftPackageReference "purchases-ios-spm" */;
 			productName = RevenueCat;
 		};
-		24EE11C72F0DAC310003DEC4 /* RevenueCatUI */ = {
+		24BD6F8C2F0F2B7B0047E3BB /* RevenueCatUI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 24EE11C42F0DAC310003DEC4 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */;
+			package = 24BD6F892F0F2B7A0047E3BB /* XCRemoteSwiftPackageReference "purchases-ios-spm" */;
 			productName = RevenueCatUI;
 		};
 /* End XCSwiftPackageProductDependency section */
