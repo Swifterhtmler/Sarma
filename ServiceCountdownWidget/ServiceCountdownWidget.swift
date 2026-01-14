@@ -12,13 +12,22 @@ import SwiftUI
 struct ServiceCountdownEntry: TimelineEntry {
     let date: Date
     let daysRemaining: Int?
+    let serviceStartDate: Date?
     let serviceEndDate: Date?
     let garrison: String?
+    let isPreService: Bool
 }
 
 struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> ServiceCountdownEntry {
-        ServiceCountdownEntry(date: Date(), daysRemaining: 100, serviceEndDate: Date(), garrison: "Varuskunta")
+        ServiceCountdownEntry(
+            date: Date(),
+            daysRemaining: 100,
+            serviceStartDate: Date(),
+            serviceEndDate: Date(),
+            garrison: "Varuskunta",
+            isPreService: false
+        )
     }
     
     func getSnapshot(in context: Context, completion: @escaping (ServiceCountdownEntry) -> Void) {
@@ -39,16 +48,31 @@ struct Provider: TimelineProvider {
     private func makeEntry() -> ServiceCountdownEntry {
         let data = SharedDataManager.shared.loadServiceData()
         
-        let daysRemaining: Int? = {
-            guard let endDate = data?.serviceEndDate else { return nil }
-            return SharedDataManager.shared.daysRemaining(until: endDate)
-        }()
+        let now = Date()
+        var daysRemaining: Int? = nil
+        var isPreService = false
+        
+        if let startDate = data?.serviceStartDate, startDate > now {
+            // Pre-service: show days until start
+            daysRemaining = Calendar.current.dateComponents([.day], from: now, to: startDate).day ?? 0
+            isPreService = true
+        } else if let endDate = data?.serviceEndDate, endDate > now {
+            // During service: show days until end
+            daysRemaining = Calendar.current.dateComponents([.day], from: now, to: endDate).day ?? 0
+            isPreService = false
+        } else if data?.serviceEndDate != nil {
+            // Service complete
+            daysRemaining = 0
+            isPreService = false
+        }
         
         return ServiceCountdownEntry(
             date: Date(),
             daysRemaining: daysRemaining,
+            serviceStartDate: data?.serviceStartDate,
             serviceEndDate: data?.serviceEndDate,
-            garrison: data?.garrison
+            garrison: data?.garrison,
+            isPreService: isPreService
         )
     }
 }
@@ -109,9 +133,9 @@ struct ServiceCountdownWidgetEntryView: View {
         VStack(spacing: 8) {
             Text("\(days)")
                 .font(.system(size: 48, weight: .bold, design: .rounded))
-                .foregroundColor(.green)
+                .foregroundColor(entry.isPreService ? .blue : .green)
             
-            Text(days == 1 ? "päivä jäljellä" : "päivää jäljellä")
+            Text(entry.isPreService ? "päivää alkuun" : (days == 1 ? "päivä jäljellä" : "päivää jäljellä"))
                 .font(.caption)
                 .foregroundColor(.secondary)
                 .minimumScaleFactor(0.7)
@@ -122,13 +146,13 @@ struct ServiceCountdownWidgetEntryView: View {
     private func mediumWidgetView(days: Int) -> some View {
         HStack {
             VStack(alignment: .leading, spacing: 4) {
-                Text("Kotiutukseen")
+                Text(entry.isPreService ? "Palvelukseen" : "Kotiutukseen")
                     .font(.caption)
                     .foregroundColor(.secondary)
                 
                 Text("\(days)")
                     .font(.system(size: 40, weight: .bold, design: .rounded))
-                    .foregroundColor(.green)
+                    .foregroundColor(entry.isPreService ? .blue : .green)
                 
                 Text(days == 1 ? "päivä" : "päivää")
                     .font(.subheadline)
@@ -141,7 +165,7 @@ struct ServiceCountdownWidgetEntryView: View {
                 VStack(alignment: .trailing, spacing: 4) {
                     Image(systemName: "mappin.circle.fill")
                         .font(.title2)
-                        .foregroundColor(.green)
+                        .foregroundColor(entry.isPreService ? .blue : .green)
                     Text(garrison)
                         .font(.caption)
                         .foregroundColor(.secondary)
@@ -159,7 +183,7 @@ struct ServiceCountdownWidgetEntryView: View {
             Image(systemName: "calendar.badge.exclamationmark")
                 .font(.largeTitle)
                 .foregroundColor(.secondary)
-            Text("Aseta kotiutuspäivä")
+            Text("Aseta palveluspäivät")
                 .font(.caption)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
@@ -184,11 +208,11 @@ struct ServiceCountdownWidget: Widget {
 #Preview(as: .systemSmall) {
     ServiceCountdownWidget()
 } timeline: {
-    ServiceCountdownEntry(date: .now, daysRemaining: 150, serviceEndDate: Date(), garrison: "Vekaranjärvi")
+    ServiceCountdownEntry(date: .now, daysRemaining: 150, serviceStartDate: nil, serviceEndDate: Date(), garrison: "Vekaranjärvi", isPreService: false)
 }
 
 #Preview(as: .systemMedium) {
     ServiceCountdownWidget()
 } timeline: {
-    ServiceCountdownEntry(date: .now, daysRemaining: 89, serviceEndDate: Date(), garrison: "Santahamina")
+    ServiceCountdownEntry(date: .now, daysRemaining: 89, serviceStartDate: nil, serviceEndDate: Date(), garrison: "Santahamina", isPreService: false)
 }

@@ -7,9 +7,22 @@
 
 // Views/Components/CountdownCard.swift
 import SwiftUI
+import ConfettiSwiftUI
 
 struct CountdownCard: View {
     let profile: UserProfile?
+    
+    @State private var confettiTrigger: Int = 0
+
+    private var daysServed: Int {
+        guard let profile = profile,
+              let startDate = profile.serviceStartDate,
+              startDate <= Date() else {
+            return 0
+        }
+        return Calendar.current.dateComponents([.day], from: startDate, to: Date()).day ?? 0
+    }
+    
     
     private var daysRemaining: Int {
         guard let profile = profile else { return 0 }
@@ -88,6 +101,22 @@ struct CountdownCard: View {
         .padding(.vertical, 32)
         .background(phaseColor.opacity(0.1))
         .cornerRadius(16)
+        .confettiCannon(
+            trigger: $confettiTrigger,
+            num: 40,
+            confettis: [.text("💪"), .text("🎖️"), .text("⭐️"), .text("✨")],
+            colors: [.green, .yellow, .blue],
+            confettiSize: 15,
+            repetitions: 2,
+            repetitionInterval: 0.3
+        )
+        .onAppear {
+            // Confetti on 10th day of service
+            if daysServed == 10 && !UserDefaults.standard.bool(forKey: "hasShown10DayConfetti") {
+                confettiTrigger += 1
+                UserDefaults.standard.set(true, forKey: "hasShown10DayConfetti")
+            }
+        }
     }
     
     private func calculateProgress(start: Date, end: Date) -> Double {

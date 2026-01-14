@@ -98,61 +98,117 @@ struct QuickActionsSection: View {
                         color: .purple,
                         destination: AnyView(EquipmentView())
                     )
-                } else {
-                    // Post-service actions
-                    QuickActionCard(
+                }
+                   // else {
+//                    // Post-service actions
+//                    ActionCard(
+//                        icon: "briefcase",
+//                        title: "Armeija wrapped",
+//                        subtitle: "palvelus tilastoina",
+//                        color: .blue,
+//                        destination: AnyView(särmäwrappedView())
+//                    )
+//                    
+//                    //                    QuickActionCard(
+//                    //                        icon: "graduationcap",
+//                    //                        title: "Opiskelu",
+//                    //                        subtitle: "Hakuajat",
+//                    //                        color: .purple,
+//                    //                        destination: AnyView(Text("Tulossa Pian"))
+//                    //                    )
+//                }
+            }
+            
+            
+            LazyVGrid(
+                columns: [GridItem(.flexible())],
+                spacing: 16
+            ) {
+                if !isDuringService && !isPreService {
+                    ActionCard(
                         icon: "briefcase",
-                        title: "Työnhaku",
-                        subtitle: "Suunnittele ura",
+                        title: "Armeija wrapped",
+                        subtitle: "palvelus tilastoina",
                         color: .blue,
-                        destination: AnyView(Text("Tulossa Pian"))
-                    )
-                    
-                    QuickActionCard(
-                        icon: "graduationcap",
-                        title: "Opiskelu",
-                        subtitle: "Hakuajat",
-                        color: .purple,
-                        destination: AnyView(Text("Tulossa Pian"))
+                        destination: AnyView(särmäwrappedView())
                     )
                 }
+                
             }
         }
     }
-}
-
-struct QuickActionCard: View {
-    let icon: String
-    let title: String
-    let subtitle: String
-    let color: Color
-    let destination: AnyView
     
-    var body: some View {
-        NavigationLink {
-            destination
-        } label: {
-            VStack(alignment: .leading, spacing: 12) {
-                Image(systemName: icon)
-                    .font(.system(size: 32))
-                    .foregroundStyle(color)
-                
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(title)
-                        .font(.headline)
-                        .foregroundStyle(.primary)
+    struct QuickActionCard: View {
+        let icon: String
+        let title: String
+        let subtitle: String
+        let color: Color
+        let destination: AnyView
+        
+        var body: some View {
+            NavigationLink {
+                destination
+            } label: {
+                VStack(alignment: .leading, spacing: 12) {
+                    Image(systemName: icon)
+                        .font(.system(size: 32))
+                        .foregroundStyle(color)
                     
-                    Text(subtitle)
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                        .lineLimit(1)
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(title)
+                            .font(.headline)
+                            .foregroundStyle(.primary)
+                        
+                        Text(subtitle)
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                            .lineLimit(1)
+                    }
                 }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding()
+                .background(Color(.systemBackground))
+                .cornerRadius(12)
+                .shadow(color: .black.opacity(0.05), radius: 5, y: 2)
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding()
-            .background(Color(.systemBackground))
-            .cornerRadius(12)
-            .shadow(color: .black.opacity(0.05), radius: 5, y: 2)
+        }
+    }
+    
+    
+    struct ActionCard: View {
+        let icon: String
+        let title: String
+        let subtitle: String
+        let color: Color
+        let destination: AnyView
+        
+        var body: some View {
+            NavigationLink {
+                destination
+            } label: {
+                VStack(alignment: .center) {
+                    Image(systemName: icon)
+                        .font(.system(size: 32))
+                        .foregroundStyle(color)
+                    
+                    VStack(alignment: .center) {
+                        Text(title)
+                            .font(.headline)
+                            .foregroundStyle(.primary)
+                        
+                        Text(subtitle)
+                            .frame(maxWidth: .infinity, alignment: .center)
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                            .lineLimit(1)
+                    }
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding()
+                .background(Color(.systemBackground))
+                .cornerRadius(12)
+                .shadow(color: .black.opacity(0.05), radius: 5, y: 2)
+            }
         }
     }
 }

@@ -65,7 +65,7 @@ struct SettingsView: View {
                 }
             }
             
-            Section("Arviointikoodi") {
+            Section("Aktivointikoodi") {
                 HStack {
                     TextField("Syötä koodi", text: $promoCode)
                         .textInputAutocapitalization(.never)
@@ -73,7 +73,7 @@ struct SettingsView: View {
                     
                     Button("Aktivoi") {
                         checkPromoCode()
-                    }
+                    } 
                     .disabled(promoCode.isEmpty)
                 }
             }
@@ -140,6 +140,7 @@ struct SettingsView: View {
         
         // Update widget with new data
         SharedDataManager.shared.saveServiceData(
+            startDate: serviceStartDate,
             endDate: serviceEndDate,
             garrison: garrison.isEmpty ? nil : garrison
         )

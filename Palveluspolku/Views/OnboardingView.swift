@@ -158,6 +158,7 @@ struct OnboardingView: View {
         
         // Update widget with new data
         SharedDataManager.shared.saveServiceData(
+            startDate: serviceStartDate,
             endDate: serviceEndDate,
             garrison: garrison.isEmpty ? nil : garrison
         )
