@@ -128,7 +128,7 @@ struct QuickActionsSection: View {
                     ActionCard(
                         icon: "briefcase",
                         title: "Armeija wrapped",
-                        subtitle: "palvelus tilastoina",
+                        subtitle: "palvelusaika tilastoina",
                         color: .blue,
                         destination: AnyView(särmäwrappedView())
                     )

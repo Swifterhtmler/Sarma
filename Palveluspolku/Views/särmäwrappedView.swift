@@ -63,7 +63,7 @@ struct särmäwrappedView: View {
     }
     
     private var coffeeEquivalent: Int {
-        let coffeePrice = 3.0
+        let coffeePrice = 5.0
         return Int(totalEarned / coffeePrice)
     }
 
@@ -132,7 +132,7 @@ struct särmäwrappedView: View {
                     StatCard(title: "Päiviä jäljellä", value: "0")
                     
                     StatCard(title: "Ansaittu yhteensä", value: String(format: "%.2f €", totalEarned))
-                    StatCard(title: "Kahvikuppeja", value: "☕️ \(coffeeEquivalent) kpl")
+//                    StatCard(title: "Kahvikuppeja", value: "☕️ \(coffeeEquivalent) kpl")
                     StatCard(title: "Varusteita lisätty", value: "\(equipmentCount) kpl")
                     
                     if let bestDistance = bestCooperDistance {
