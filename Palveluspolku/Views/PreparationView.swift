@@ -13,7 +13,6 @@ struct PreparationView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [PreparationItem]
     @Query private var profiles: [UserProfile]
-    
     @State private var showingAddItem = false
     
     // Ordered categories
