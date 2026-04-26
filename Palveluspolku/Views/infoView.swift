@@ -32,6 +32,7 @@ struct InfoView: View {
             }
             
             Section("Vinkkejä") {
+                TipRow(text: "Lataa MarsMars-sovellus voima treenejä varten")
                 TipRow(text: "Aloita fyysinen harjoittelu 3 kuukautta ennen")
                 TipRow(text: "Käy hammaslääkärissä ennen palvelusta")
                 TipRow(text: "Säästä kaikki matka liput matkakorvauksia varten")

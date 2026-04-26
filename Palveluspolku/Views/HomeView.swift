@@ -99,6 +99,7 @@ struct HomeView: View {
                         Image(systemName: "gear")
                     }
                 }
+
             }
             .onAppear {
                 if !hasCheckedReviewPrompt {
@@ -106,6 +107,7 @@ struct HomeView: View {
                     hasCheckedReviewPrompt = true
                 }
             }
+            .widgetPromoModal(serviceStartDate: profile?.serviceStartDate)
         }
     }
     

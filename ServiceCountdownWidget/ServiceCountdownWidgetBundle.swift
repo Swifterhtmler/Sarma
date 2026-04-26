@@ -12,5 +12,6 @@ import SwiftUI
 struct ServiceCountdownWidgetBundle: WidgetBundle {
     var body: some Widget {
         ServiceCountdownWidget()
+        MenuWidget()
     }
 }

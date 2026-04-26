@@ -25,6 +25,24 @@ class SharedDataManager {
         UserDefaults(suiteName: appGroupID)
     }
     
+    
+    private let menuCacheKey = "cachedMenuResponse"
+
+    func saveMenuResponse(_ menu: MenuResponse) {
+        if let encoded = try? JSONEncoder().encode(menu) {
+            userDefaults?.set(encoded, forKey: menuCacheKey)
+        }
+    }
+
+    func loadMenuResponse() -> MenuResponse? {
+        guard let data = userDefaults?.data(forKey: menuCacheKey),
+              let decoded = try? JSONDecoder().decode(MenuResponse.self, from: data) else {
+            return nil
+        }
+        return decoded
+    }
+    
+    
     // Save data from main app
     func saveServiceData(startDate: Date?, endDate: Date?, garrison: String?) {  // ← UPDATED
         let data = ServiceData(

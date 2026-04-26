@@ -83,12 +83,15 @@ struct QuickActionsSection: View {
                         destination: AnyView(PayTrackerView())
                     )
                     
+                    
+                    // this is best place for accessing menu ergonomically if right handed
+                    
                     QuickActionCard(
-                        icon: "figure.run",
-                        title: "Kunto",
-                        subtitle: "Testit",
-                        color: .orange,
-                        destination: AnyView(CooperTestView())
+                        icon: "fork.knife",
+                        title: "Ruokalista",
+                        subtitle: "mitä ruokana",
+                        color: .yellow,
+                        destination: AnyView(MenuView())
                     )
                     
                     QuickActionCard(
@@ -98,6 +101,13 @@ struct QuickActionsSection: View {
                         color: .purple,
                         destination: AnyView(EquipmentView())
                     )
+                    
+              
+                    
+         
+                    
+                    
+                    
                 }
                    // else {
 //                    // Post-service actions

@@ -18,12 +18,14 @@ struct SettingsView: View {
     
     @State private var serviceStartDate = Date()
     @State private var serviceEndDate = Date()
-    @State private var garrison = ""
     @State private var showPaywall = false
     @State private var alertTitle = ""
     @State private var alertMessage = ""
     @State private var showAlert = false
     @State private var promoCode = ""
+    
+    @State private var selectedVaruskunta: Varuskunta = Varuskunta.all[0]
+    
     
     private var profile: UserProfile? {
         profiles.first
@@ -37,7 +39,11 @@ struct SettingsView: View {
             }
             
             Section("Varuskunta") {
-                TextField("Varuskunta (valinnainen)", text: $garrison)
+                Picker("Valitse varuskunta", selection: $selectedVaruskunta) {
+                    ForEach(Varuskunta.all) { varuskunta in
+                        Text(varuskunta.name).tag(varuskunta)
+                    }
+                }
             }
             
             Section("Premium") {
@@ -73,7 +79,7 @@ struct SettingsView: View {
                     
                     Button("Aktivoi") {
                         checkPromoCode()
-                    } 
+                    }
                     .disabled(promoCode.isEmpty)
                 }
             }
@@ -81,7 +87,7 @@ struct SettingsView: View {
             
         
             
-            Text("Käyttöehdot: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")
+            Text("Käyttöehdot: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")
                 .foregroundStyle(Color(.secondaryLabel))
 
             Text("Tietosuojakäytäntö: https://www.termsfeed.com/live/5a9d6818-381b-4b92-8b7c-d7e6b147bd4f")
@@ -112,7 +118,12 @@ struct SettingsView: View {
             if let profile = profile {
                 serviceStartDate = profile.serviceStartDate ?? Date()
                 serviceEndDate = profile.serviceEndDate ?? Calendar.current.date(byAdding: .month, value: 6, to: Date()) ?? Date()
-                garrison = profile.garrison ?? ""
+                
+                // Load saved varuskunta
+                if let slug = profile.garrison,
+                   let varuskunta = Varuskunta.all.first(where: { $0.slug == slug }) {
+                    selectedVaruskunta = varuskunta
+                }
             } else {
                 // Set defaults for new profile
                 serviceEndDate = Calendar.current.date(byAdding: .month, value: 6, to: Date()) ?? Date()
@@ -125,13 +136,13 @@ struct SettingsView: View {
             // Update existing
             profile.serviceStartDate = serviceStartDate
             profile.serviceEndDate = serviceEndDate
-            profile.garrison = garrison
+            profile.garrison = selectedVaruskunta.slug
         } else {
             // Create new
             let newProfile = UserProfile(
                 serviceStartDate: serviceStartDate,
                 serviceEndDate: serviceEndDate,
-                garrison: garrison
+                garrison: selectedVaruskunta.slug
             )
             modelContext.insert(newProfile)
         }
@@ -142,7 +153,7 @@ struct SettingsView: View {
         SharedDataManager.shared.saveServiceData(
             startDate: serviceStartDate,
             endDate: serviceEndDate,
-            garrison: garrison.isEmpty ? nil : garrison
+            garrison: selectedVaruskunta.slug
         )
         WidgetCenter.shared.reloadAllTimelines()
     }

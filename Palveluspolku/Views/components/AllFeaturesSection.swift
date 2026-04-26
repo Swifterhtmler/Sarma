@@ -32,14 +32,15 @@ struct AllFeaturesSection: View {
                 
                 Divider().padding(.leading, 56)
                 
-                FeatureRow(
-                    icon: "fork.knife",
-                    title: "Ruokalista",
-                    color: .yellow,
-                    destination: AnyView(MenuView())
-                )
-                
-                Divider().padding(.leading, 56)
+//                FeatureRow(
+//                    icon: "figure.run",
+//                    title: "Kunto",
+//                    color: .orange,
+//                    destination: AnyView(CooperTestView())
+//                )
+//                
+//                
+//                Divider().padding(.leading, 56)
                 
                 
                 FeatureRow(

@@ -9,6 +9,9 @@
 import SwiftUI
 import SwiftData
 import WidgetKit
+#if os(iOS)
+import UIKit
+#endif
 
 struct OnboardingView: View {
     @Environment(\.modelContext) private var modelContext
@@ -19,6 +22,13 @@ struct OnboardingView: View {
     @State private var serviceStartDate = Date()
     @State private var serviceEndDate: Date
     @State private var garrison = ""
+    
+    
+    
+    @State private var selectedVaruskunta: Varuskunta = Varuskunta.all[0]
+    
+    
+    
     
     init(hasCompletedOnboarding: Binding<Bool>) {
         self._hasCompletedOnboarding = hasCompletedOnboarding
@@ -40,7 +50,7 @@ struct OnboardingView: View {
                 Text("Tervetuloa Särmään")
                     .font(.largeTitle.bold())
                 
-                Text("Valmistaudu palvelukseen, hallitse arkea ja suunnittele tulevaisuus")
+                Text("Sovellus palvelukseen ja tähän valmistautumiseen")
                     .font(.body)
                     .multilineTextAlignment(.center)
                     .foregroundStyle(.secondary)
@@ -78,7 +88,9 @@ struct OnboardingView: View {
                     OnboardingFeatureRow(icon: "eurosign.circle", text: "Varusmiespalkka ja budjetointi")
                     OnboardingFeatureRow(icon: "calendar.badge.clock", text: "Lomakone ja suunnittelu")
                     OnboardingFeatureRow(icon: "list.bullet", text: "Pakkauslistat ja valmistautuminen")
+                    OnboardingFeatureRow(icon: "square.grid.2x2", text: "TJ ja ruokalista-widgetti kotinäytölle (premium)")
                 }
+               
                 .padding(.horizontal, 40)
                 
                 Spacer()
@@ -101,6 +113,55 @@ struct OnboardingView: View {
             }
             .tag(1)
             
+            
+            // Page 3: Widgets showcase
+            VStack(spacing: 40) {
+                Spacer()
+                
+                Text("Pidä palvelus näkyvissä")
+                    .font(.title.bold())
+                
+                Text("Seuraa edistymistä suoraan kotinäytöltäsi")
+                    .font(.body)
+                    .multilineTextAlignment(.center)
+                    .foregroundStyle(.secondary)
+                    .padding(.horizontal, 40)
+                
+              
+                Image("widget-preview")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(maxWidth: 300)
+                
+                Text("Premium-ominaisuus")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                
+                Spacer()
+                
+                HStack(spacing: 16) {
+         
+                
+                    Button("Seuraava") {
+                        withAnimation {
+                            currentPage = 3
+                        }
+                    }
+                    .font(.headline)
+                    .foregroundStyle(.white)
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(Color.green)
+                    .cornerRadius(12)
+                }
+                .padding(.horizontal, 40)
+                .padding(.bottom, 40)
+            }
+            .tag(2)
+            
+            
+            
+            
             // Page 3: Setup Profile
             VStack(spacing: 30) {
                 Text("Aseta palveluspäiväsi")
@@ -112,10 +173,37 @@ struct OnboardingView: View {
                         DatePicker("Aloitus", selection: $serviceStartDate, displayedComponents: .date)
                         DatePicker("Kotiutus", selection: $serviceEndDate, in: serviceStartDate..., displayedComponents: .date)
                     }
+                   
+                    // info to tell users they can change their serving time afrerwards
+                    
+                    HStack(alignment: .top, spacing: 8) {
+                        Image(systemName: "info.circle.fill")
+                            .font(.footnote)
+                            .foregroundStyle(.secondary)
+                        
+                        Text("Kotiutusta voi myöhemmin muuttaa asetuksissa kun tarkempi palvelusaika selviää")
+                            .font(.footnote)
+                            .multilineTextAlignment(.leading)
+                            .foregroundStyle(.secondary)
+                    }
+                    .padding(10)
+                    .background(Color(.systemGray6))
+                    .cornerRadius(8)
+                    .padding(.horizontal, 10)
+                    
+                    
+//                    Section("Varuskunta") {
+//                        TextField("Varuskunta (valinnainen)", text: $garrison)
+//                    }
                     
                     Section("Varuskunta") {
-                        TextField("Varuskunta (valinnainen)", text: $garrison)
+                        Picker("Valitse varuskunta", selection: $selectedVaruskunta) {
+                            ForEach(Varuskunta.all) { varuskunta in
+                                Text(varuskunta.name).tag(varuskunta)
+                            }
+                        }
                     }
+                    
                 }
                 .scrollContentBackground(.hidden)
                 
@@ -133,7 +221,7 @@ struct OnboardingView: View {
                 .padding(.horizontal, 40)
                 .padding(.bottom, 40)
             }
-            .tag(2)
+            .tag(3)
         }
         .tabViewStyle(.page)
         .indexViewStyle(.page(backgroundDisplayMode: .always))
@@ -144,12 +232,14 @@ struct OnboardingView: View {
         if let profile = profiles.first {
             profile.serviceStartDate = serviceStartDate
             profile.serviceEndDate = serviceEndDate
-            profile.garrison = garrison.isEmpty ? nil : garrison
+//            profile.garrison = garrison.isEmpty ? nil : garrison
+            profile.garrison = selectedVaruskunta.slug
         } else {
             let newProfile = UserProfile(
                 serviceStartDate: serviceStartDate,
                 serviceEndDate: serviceEndDate,
-                garrison: garrison.isEmpty ? nil : garrison
+              // garrison: garrison.isEmpty ? nil : garrison
+                garrison: selectedVaruskunta.slug
             )
             modelContext.insert(newProfile)
         }
@@ -160,7 +250,7 @@ struct OnboardingView: View {
         SharedDataManager.shared.saveServiceData(
             startDate: serviceStartDate,
             endDate: serviceEndDate,
-            garrison: garrison.isEmpty ? nil : garrison
+            garrison: selectedVaruskunta.slug 
         )
         WidgetCenter.shared.reloadAllTimelines()
         
@@ -188,3 +278,4 @@ struct OnboardingFeatureRow: View {
     OnboardingView(hasCompletedOnboarding: .constant(false))
         .modelContainer(for: [UserProfile.self])
 }
+

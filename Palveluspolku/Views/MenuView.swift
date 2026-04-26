@@ -6,33 +6,25 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct MenuView: View {
-    @State private var selectedVaruskunta = Varuskunta.all[0]
+    @Query private var profiles: [UserProfile]
     @State private var menuData: MenuResponse?
     @State private var isLoading = false
     @State private var errorMessage: String?
     
+    private var profile: UserProfile? {
+        profiles.first
+    }
+    
+    private var selectedVaruskunta: Varuskunta {
+        profile?.varuskunta ?? Varuskunta.all[0]
+    }
+    
     var body: some View {
         NavigationView {
             VStack {
-                // Varuskunta picker
-                Picker("Varuskunta", selection: $selectedVaruskunta) {
-                    ForEach(Varuskunta.all) { varuskunta in
-                        Text(varuskunta.name).tag(varuskunta)
-                    }
-                }
-                .pickerStyle(.menu)
-                .background(Color(.systemGray6))
-                .foregroundStyle(Color(.white))
-                .cornerRadius(10)
-                .padding()
-                .onChange(of: selectedVaruskunta) { _, _ in
-                    Task {
-                        await loadMenu()
-                    }
-                }
-                
                 if isLoading {
                     ProgressView("Ladataan ruokalistaa...")
                 } else if let error = errorMessage {
@@ -90,7 +82,7 @@ struct MenuView: View {
                 }
             }
             .background(Color.gray.opacity(0.2))
-            .navigationTitle("Ruokalista")
+            .navigationTitle("Ruokalista - \(selectedVaruskunta.name)")
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -116,6 +108,8 @@ struct MenuView: View {
         
         do {
             menuData = try await MenuService.shared.fetchWeekMenu(for: selectedVaruskunta)
+            // Save to SharedDataManager for widget
+            SharedDataManager.shared.saveMenuResponse(menuData ?? [])
         } catch {
             errorMessage = error.localizedDescription
         }
@@ -126,5 +120,5 @@ struct MenuView: View {
 
 #Preview {
     MenuView()
+        .modelContainer(for: [UserProfile.self])
 }
-

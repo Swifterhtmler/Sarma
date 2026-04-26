@@ -47,6 +47,10 @@ struct CooperTestView: View {
             }
         }
         .navigationTitle("Cooper-testit")
+        Text("Jos haluat kattavamman treeni ohjelman kokeile puolustusvoimien MarsMars sovellusta")
+            .font(.callout)
+            .foregroundStyle(.secondary)
+        
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
@@ -71,7 +75,9 @@ struct AddCooperTestView: View {
     @State private var date = Date()
     
     var body: some View {
+        
         NavigationStack {
+            
             Form {
                 DatePicker("Päivämäärä", selection: $date, displayedComponents: .date)
                 
