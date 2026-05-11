@@ -17,6 +17,7 @@ struct särmäwrappedView: View {
     @Query private var equipmentItems: [EquipmentItem]
     @Query(sort: \CooperTest.distance, order: .reverse) private var cooperTests: [CooperTest]
     @State private var trigger: Int = 0
+    @State private var textFieldValue: String = ""
     
     private var profile: UserProfile? {
         profiles.first
@@ -116,6 +117,8 @@ struct särmäwrappedView: View {
 //        }
 //    }
     
+    
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 24) {
@@ -134,13 +137,17 @@ struct särmäwrappedView: View {
                     StatCard(title: "Ansaittu yhteensä", value: String(format: "%.2f €", totalEarned))
 //                    StatCard(title: "Kahvikuppeja", value: "☕️ \(coffeeEquivalent) kpl")
                     StatCard(title: "Varusteita lisätty", value: "\(equipmentCount) kpl")
-                    
                     if let bestDistance = bestCooperDistance {
                         StatCard(title: "Paras Cooper-testi", value: "\(bestDistance) m")
                     }
                     if let improvement = cooperImprovement {
                         StatCard(title: "Cooper parannus", value: "+\(improvement) m 📈")
                     }
+                    //StatCard(title: "Intti yhdellä lauseella:", value: textFieldValue)
+                    
+                   //  TextField("Kirjoita jotain",text: $textFieldValue)
+                    StatCardTextField(value: $textFieldValue)
+                       
                 }
             }
             .padding()
@@ -189,7 +196,34 @@ struct StatCard: View {
     }
 }
 
+struct StatCardTextField: View {
+    @Binding var value: String
+    
+    var body: some View {
+        HStack {
+            VStack(alignment: .leading) {
+                Text("Intti tiivistettynä yhdellä lauseella:")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                TextField("Kirjoita jotain", text: $value)
+                    .autocorrectionDisabled(true)
+                    .onSubmit {
+                        // Persist the current value without clearing the field
+                        UserDefaults.standard.set(value, forKey: "wrappedOneLiner")
+                    }
+                    .font(.title2)
+                    .fontWeight(.bold)
+            }
+            Spacer()
+        }
+        .padding()
+        .background(Color(.systemGray6))
+        .cornerRadius(12)
+    }
+}
+
 #Preview {
     särmäwrappedView()
         .modelContainer(for: [UserProfile.self, PaySettings.self, EquipmentItem.self, CooperTest.self])
 }
+

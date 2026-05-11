@@ -250,7 +250,7 @@ struct WidgetPromoModal: View {
                     Button {
                         dismiss()
                     } label: {
-                        Text("Älä enää näytä viestiä uudelleen")
+                        Text("Älä näytä tätä viestiä enää uudelleen")
                             .font(.subheadline)
                             .foregroundStyle(.secondary)
                             .padding(.vertical, 6)
