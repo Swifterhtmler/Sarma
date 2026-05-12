@@ -132,7 +132,7 @@ struct särmäwrappedView: View {
                 VStack(spacing: 10) {
                     StatCard(title: "Palveluksesta suoritettu", value: "100 %")
                     StatCard(title: "Päiviä palveltu", value: "\(daysServed)")
-                    StatCard(title: "Päiviä jäljellä", value: "0")
+               //     StatCard(title: "Päiviä jäljellä", value: "0")
                     
                     StatCard(title: "Ansaittu yhteensä", value: String(format: "%.2f €", totalEarned))
 //                    StatCard(title: "Kahvikuppeja", value: "☕️ \(coffeeEquivalent) kpl")

@@ -6,6 +6,9 @@
 //
 
 // Views/Components/CountdownCard.swift
+
+
+// Views/Components/CountdownCard.swift
 import SwiftUI
 import ConfettiSwiftUI
 
@@ -13,7 +16,7 @@ struct CountdownCard: View {
     let profile: UserProfile?
     
     @State private var confettiTrigger: Int = 0
-
+    
     private var daysServed: Int {
         guard let profile = profile,
               let startDate = profile.serviceStartDate,
